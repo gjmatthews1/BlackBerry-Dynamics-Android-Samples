@@ -1,10 +1,13 @@
+apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../gradle_config/setBuildVersions.gradle'
+
 buildscript {
     repositories {
         mavenCentral()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:8.9.1'
     }
 }
 
@@ -16,11 +19,8 @@ allprojects {
     }
 }
 
-apply plugin: 'com.android.application'
-
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    namespace 'com.example.nativemedia'
 
     sourceSets {
         main {
@@ -37,8 +37,6 @@ android {
 
     defaultConfig {
         applicationId "com.example.nativemedia"
-        minSdkVersion 14
-        targetSdkVersion 19
     }
 
     buildTypes {
@@ -51,9 +49,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
-    
-    compile 'com.android.support:appcompat-v7:24.1.1'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.0.+'
+
 }
 
 

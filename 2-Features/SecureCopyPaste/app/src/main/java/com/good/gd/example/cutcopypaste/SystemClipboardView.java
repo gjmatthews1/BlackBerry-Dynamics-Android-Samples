@@ -28,7 +28,7 @@ import android.widget.EditText;
     For comparision with SecureClipboardView implementation
  */
 
-public class SystemClipboardView extends EditText {
+public class SystemClipboardView extends androidx.appcompat.widget.AppCompatEditText {
 
 
     private ClipboardManager clipboardManager;
@@ -45,11 +45,6 @@ public class SystemClipboardView extends EditText {
 
     public SystemClipboardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    public SystemClipboardView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
 

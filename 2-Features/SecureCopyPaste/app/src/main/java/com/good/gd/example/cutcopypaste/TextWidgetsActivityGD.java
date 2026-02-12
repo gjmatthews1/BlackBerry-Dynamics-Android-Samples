@@ -17,7 +17,6 @@
 package com.good.gd.example.cutcopypaste;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.good.gd.example.cutcopypaste.databinding.ActivityTextWidgetsGdBinding;
 
@@ -46,10 +45,7 @@ public class TextWidgetsActivityGD extends TextWidgetsParentActivity {
 
         setupAppBarAndEnabledBackButton(getString(R.string.activity_title_widgets_gd));
 
-        View mainView = findViewById(R.id.main_layout);
-        View mainContent = findViewById(R.id.content_layout);
-
-        adjustViewsIfEdgeToEdgeMode(mainView, null, mainContent);
+        adjustViewsIfEdgeToEdgeMode(binding.textWidgetsScreenRootLayout, null, binding.textWidgetsScreenContentLayout);
     }
 
     private void setFieldsFromBinding() {
@@ -58,7 +54,7 @@ public class TextWidgetsActivityGD extends TextWidgetsParentActivity {
         gdEditText = binding.gdEditText;
         gdAutoCompleteTextView = binding.gdAutoCompleteTextView;
         gdMultiAutoCompleteTextView = binding.gdMultiAutoCompleteTextView;
-        gdClipboardView = binding.gdClipboardView;
+        gdClipboardView = binding.textViewGdClipboard;
         gdSearchView = binding.gdSearchView;
         gdWebView = binding.gdWebView;
 
@@ -73,11 +69,11 @@ public class TextWidgetsActivityGD extends TextWidgetsParentActivity {
 
         nonGdNoSelectTextView = binding.nonGdNoSelectTextView;
         nonGdTextView = binding.nonGdTextView;
-        nonGdEditText = binding.nonGdEditText;
-        nonGdAutoCompleteTextView = binding.nonGdAutoCompleteTextView;
-        nonGdMultiAutoCompleteTextView = binding.nonGdMultiAutoCompleteTextView;
-        nonGdClipboardView = binding.nonGdClipboardView;
-        nonGdSearchView = binding.nonGdSearchView;
+        nonGdEditText = binding.editText;
+        nonGdAutoCompleteTextView = binding.autoCompleteTextView;
+        nonGdMultiAutoCompleteTextView = binding.multiAutoCompleteTextView;
+        nonGdClipboardView = binding.textViewSystemClipboard;
+        nonGdSearchView = binding.searchView;
         nonGdWebView = binding.nonGdWebView;
 
         nonGdNoSelectTextViewCaption = binding.nonGdNoSelectTextViewCaption;

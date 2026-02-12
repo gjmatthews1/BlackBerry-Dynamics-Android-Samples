@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../gradle_config/setBuildVersions.gradle'
 
 buildscript {
     repositories {
@@ -6,7 +7,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.1'
+        classpath 'com.android.tools.build:gradle:8.9.1'
     }
 }
 
@@ -19,11 +20,8 @@ allprojects {
 }
 
 android {
-
     namespace "com.good.gd.example.push"
     testNamespace "com.good.gd.example.push.test"
-
-    compileSdk 34
 
     sourceSets {
         main {
@@ -45,8 +43,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     signingConfigs {
@@ -59,11 +57,9 @@ android {
     }
 
     defaultConfig {
-        minSdk 30
         applicationId "com.good.gd.example.push"
         //Ignoring Lint warning for OldTargetApi as this app intentionally sets target API level to 24
         //noinspection OldTargetApi
-        targetSdk 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -79,9 +75,9 @@ android {
 
 dependencies {
 
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_backup_support:13.0.+'
-    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:13.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_backup_support:14.0.+'
+    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:14.0.+'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.annotation:annotation:1.2.0'

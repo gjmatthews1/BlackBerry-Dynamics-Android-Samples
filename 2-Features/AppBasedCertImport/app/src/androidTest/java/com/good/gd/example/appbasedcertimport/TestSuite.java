@@ -7,6 +7,7 @@ package com.good.gd.example.appbasedcertimport;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.good.automated.general.helpers.BBDActivationHelper;
+import com.good.automated.general.helpers.BBDUI;
 import com.good.automated.general.utils.AbstractUIAutomatorUtils;
 import com.good.automated.general.utils.GDSDKStateReceiver;
 import com.good.automated.general.utils.UIAutomatorUtilsFactory;
@@ -63,7 +64,9 @@ public class TestSuite {
 
         uiAutomatorUtils.launchAppUnderTest();
 
-        assertTrue("Failed to provision or login into the app.", BBDActivationHelper.loginOrActivateApp().isSuccessful());
+        assertTrue("Failed to provision or login into the app.",
+                BBDActivationHelper.loginOrActivateApp(uiAutomatorUtils.getAppPackageName(),
+                        BBDUI.createAppUIForActivation(uiAutomatorUtils.getAppPackageName(), "main_activity")).isSuccessful());
 
         assertTrue("BlackBerry Dynamics SDK is not authorized", uiAutomatorUtils.checkGDAuthorized());
 

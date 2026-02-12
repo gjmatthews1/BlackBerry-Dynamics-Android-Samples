@@ -14,6 +14,13 @@ The secure user interface text controls are compared with the corresponding defa
 
 Text in a BlackBerry Dynamics control may be encrypted before being written to the clipboard, and decrypted when read from the clipboard.
 
+Secure controls can be created in 3 ways; each would guarantee the same security, they differ only with regards to the underlaying layout class.
+
+-   Explicit use of Dynamics classes that subclass the standard Android controls: in layout xml use classes like com.good.gd.widget.GDTextView (it extends  android.widget.TextView) 
+-   Explicit use of Dynamics classes that subclass the AppCompat Android controls: in layout xml use classes like com.good.gd.widget.GDAppCompatTextView (it extends androidx.appcompat.widget.AppCompatTextView)
+-   Implicit use of Dynamics classes that subclass the AppCompat Android controls: in layout xml use classes like TextView which will be inflated as a GDAppCompatTextView by the Dynamics SDK
+
+
 ## Requirements
 
 See [Software Requirements](https://docs.blackberry.com/en/development-tools/blackberry-dynamics-sdk-android/current/blackberry-dynamics-sdk-android-devguide/gwj1489687014271) of the BlackBerry Dynamics SDK (Android) 

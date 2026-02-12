@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main_layout">
+    android:id="@+id/textWidgetsScreenRootLayout">
 
     <LinearLayout
         android:orientation="vertical"
@@ -12,7 +12,7 @@
     <include layout="@layout/sample_app_top_bar"/>
 
     <LinearLayout
-        android:id="@+id/content_layout"
+        android:id="@+id/textWidgetsScreenContentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/gd_view_horizontal_margin"
@@ -157,13 +157,14 @@
 
                     <!-- GDViewClassInflater will inflate this as a GDAppCompatEditText -->
                     <EditText
-                        android:id="@+id/gdEditText"
+                        android:id="@+id/gd_edit_text"
                         android:imeOptions="actionNext"
                         android:nextFocusForward="@+id/gd_auto_complete_text_view"
                         android:hint="@string/gd_edit_text_hint"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/gd_view_height"
                         android:ellipsize="end"
+                        android:textIsSelectable="true"
                         android:maxLength="@integer/field_limit"/>
 
                     <android.widget.TextView
@@ -182,7 +183,7 @@
 
                     <!-- enforce standard widget by using the full class name -->
                     <android.widget.EditText
-                        android:id="@+id/nonGdEditText"
+                        android:id="@+id/edit_text"
                         android:imeOptions="actionNext"
                         android:nextFocusForward="@+id/auto_complete_text_view"
                         android:hint="@string/non_gd_edit_text_hint"
@@ -212,7 +213,7 @@
 
                     <!-- GDViewClassInflater will inflate this as a GDAppCompatAutoCompleteTextView -->
                     <AutoCompleteTextView
-                        android:id="@+id/gdAutoCompleteTextView"
+                        android:id="@+id/gd_auto_complete_text_view"
                         android:imeOptions="actionNext"
                         android:nextFocusForward="@+id/gd_multi_auto_complete_text_view"
                         android:hint="@string/gd_auto_complete_text_hint"
@@ -220,6 +221,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/gd_view_height"
                         android:ellipsize="end"
+                        android:textIsSelectable="true"
                         android:maxLength="@integer/field_limit"/>
 
                     <android.widget.TextView
@@ -237,7 +239,7 @@
 
                     <!-- enforce standard widget by using the full class name -->
                     <android.widget.AutoCompleteTextView
-                        android:id="@+id/nonGdAutoCompleteTextView"
+                        android:id="@+id/auto_complete_text_view"
                         android:imeOptions="actionNext"
                         android:nextFocusForward="@+id/multi_auto_complete_text_view"
                         android:hint="@string/non_gd_auto_complete_text_hint"
@@ -268,7 +270,7 @@
 
                     <!-- GDViewClassInflater will inflate this as a GDAppCompatMultiAutoCompleteTextView -->
                     <MultiAutoCompleteTextView
-                        android:id="@+id/gdMultiAutoCompleteTextView"
+                        android:id="@+id/gd_multi_auto_complete_text_view"
                         android:imeOptions="actionNext"
                         android:nextFocusForward="@+id/text_view_gd_clipboard"
                         android:hint="@string/gd_multi_auto_complete_text_hint"
@@ -276,6 +278,7 @@
                         android:layout_height="@dimen/gd_view_height"
                         android:singleLine="true"
                         android:ellipsize="end"
+                        android:textIsSelectable="true"
                         android:maxLength="@integer/field_limit"/>
 
                     <android.widget.TextView
@@ -293,7 +296,7 @@
 
                     <!-- enforce standard widget by using the full class name -->
                     <android.widget.MultiAutoCompleteTextView
-                        android:id="@+id/nonGdMultiAutoCompleteTextView"
+                        android:id="@+id/multi_auto_complete_text_view"
                         android:imeOptions="actionNext"
                         android:nextFocusForward="@+id/text_view_system_clipboard"
                         android:hint="@string/non_gd_multi_auto_complete_text_hint"
@@ -323,7 +326,7 @@
                     android:orientation="vertical">
 
                     <com.good.gd.example.cutcopypaste.SecureClipboardView
-                        android:id="@+id/gdClipboardView"
+                        android:id="@+id/text_view_gd_clipboard"
                         android:imeOptions="actionNext"
                         android:nextFocusForward="@+id/edit_text"
                         android:layout_width="match_parent"
@@ -347,7 +350,7 @@
                     android:orientation="vertical">
 
                     <com.good.gd.example.cutcopypaste.SystemClipboardView
-                        android:id="@+id/nonGdClipboardView"
+                        android:id="@+id/text_view_system_clipboard"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/gd_view_height"
                         android:singleLine="true"
@@ -376,7 +379,7 @@
 
                     <!-- GDViewClassInflater will inflate this as a GDAppCompatSearchView -->
                     <androidx.appcompat.widget.SearchView
-                        android:id="@+id/gdSearchView"
+                        android:id="@+id/gd_search_view"
                         android:queryHint="@string/gd_search_view_hint"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/gd_view_height"
@@ -399,7 +402,7 @@
 
                     <!-- GDViewClassInflater will not override this, so it's the standard widget -->
                     <SearchView
-                        android:id="@+id/nonGdSearchView"
+                        android:id="@+id/search_view"
                         android:queryHint="@string/non_gd_search_view_hint"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/gd_view_height"
@@ -428,7 +431,7 @@
                     android:orientation="vertical">
 
                     <com.good.gd.widget.GDWebView
-                        android:id="@+id/gdWebView"
+                        android:id="@+id/gd_web_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         />
@@ -447,7 +450,7 @@
                     android:orientation="vertical">
 
                     <WebView
-                        android:id="@+id/nonGdWebView"
+                        android:id="@+id/non_gd_web_view"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         />
@@ -463,7 +466,7 @@
         </TableLayout>
 
         <TextView
-            android:id="@+id/fieldLengthInfoView"
+            android:id="@+id/field_length_info_view"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/gd_view_vertical_margin"
@@ -507,7 +510,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/outboundState"
+                    android:id="@+id/outbound_state"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -536,7 +539,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/inboundState"
+                    android:id="@+id/inbound_state"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -565,7 +568,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/dictationState"
+                    android:id="@+id/dictation_state"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -588,7 +591,7 @@
             >
 
             <Button
-                android:id="@+id/clearFieldsButton"
+                android:id="@+id/clearfields_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/clear_all_fields"
@@ -596,7 +599,7 @@
                 />
 
             <Button
-                android:id="@+id/clearPasteboardButton"
+                android:id="@+id/clear_pasteboard_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="clearPasteboard"
@@ -604,7 +607,7 @@
                 />
 
             <Button
-                android:id="@+id/generateRandomTextButton"
+                android:id="@+id/getn_text_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="generateText"

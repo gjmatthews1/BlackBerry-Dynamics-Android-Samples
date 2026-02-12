@@ -47,7 +47,7 @@ class FileFragment : Fragment() {
         saveButton.setOnClickListener {
             try {
                 val outputStream: FileOutputStream =
-                    context!!.openFileOutput(FILENAME, Context.MODE_PRIVATE)
+                    requireContext().openFileOutput(FILENAME, Context.MODE_PRIVATE)
                 outputStream.write(fileContents.text.toString().toByteArray())
                 outputStream.close()
 
@@ -61,7 +61,7 @@ class FileFragment : Fragment() {
         val loadButton = view.findViewById(R.id.loadButton) as Button
         loadButton.setOnClickListener {
             try {
-                val inputStream: FileInputStream? = context!!.openFileInput(FILENAME)
+                val inputStream: FileInputStream? = requireContext().openFileInput(FILENAME)
 
                 if (inputStream != null) {
                     val inputStreamReader = InputStreamReader(inputStream)

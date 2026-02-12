@@ -113,10 +113,7 @@ public class RichTextActivity extends SampleAppActivity {
 
         setupAppBarAndEnabledBackButton(getString(R.string.activity_title_richtext));
 
-        View mainView = findViewById(R.id.main_layout);
-        View mainContent = findViewById(R.id.content_layout);
-
-        adjustViewsIfEdgeToEdgeMode(mainView, null, mainContent);
+        adjustViewsIfEdgeToEdgeMode(binding.richTextScreenRootLayout, null, binding.richTextScreenContentLayout);
     }
 
     public void onAddStyle(View view) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_layout"
+    android:id="@+id/textWidgetsScreenRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +12,7 @@
         <include layout="@layout/sample_app_top_bar" />
 
         <LinearLayout
-            android:id="@+id/content_layout"
+            android:id="@+id/textWidgetsScreenContentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/gd_view_horizontal_margin"
@@ -148,7 +148,7 @@
                         android:orientation="vertical">
 
                         <com.good.gd.widget.GDEditText
-                            android:id="@+id/gdEditText"
+                            android:id="@+id/gd_edit_text"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -174,7 +174,7 @@
 
                         <!-- enforce standard widget by using the full class name -->
                         <android.widget.EditText
-                            android:id="@+id/nonGdEditText"
+                            android:id="@+id/edit_text"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -202,7 +202,7 @@
                         android:orientation="vertical">
 
                         <com.good.gd.widget.GDAutoCompleteTextView
-                            android:id="@+id/gdAutoCompleteTextView"
+                            android:id="@+id/gd_auto_complete_text_view"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -228,7 +228,7 @@
 
                         <!-- enforce standard widget by using the full class name -->
                         <android.widget.AutoCompleteTextView
-                            android:id="@+id/nonGdAutoCompleteTextView"
+                            android:id="@+id/auto_complete_text_view"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -257,7 +257,7 @@
                         android:orientation="vertical">
 
                         <com.good.gd.widget.GDMultiAutoCompleteTextView
-                            android:id="@+id/gdMultiAutoCompleteTextView"
+                            android:id="@+id/gd_multi_auto_complete_text_view"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -283,7 +283,7 @@
 
                         <!-- enforce standard widget by using the full class name -->
                         <android.widget.MultiAutoCompleteTextView
-                            android:id="@+id/nonGdMultiAutoCompleteTextView"
+                            android:id="@+id/multi_auto_complete_text_view"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -312,7 +312,7 @@
                         android:orientation="vertical">
 
                         <com.good.gd.example.cutcopypaste.SecureClipboardView
-                            android:id="@+id/gdClipboardView"
+                            android:id="@+id/text_view_gd_clipboard"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -336,7 +336,7 @@
                         android:orientation="vertical">
 
                         <com.good.gd.example.cutcopypaste.SystemClipboardView
-                            android:id="@+id/nonGdClipboardView"
+                            android:id="@+id/text_view_system_clipboard"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -363,7 +363,7 @@
                         android:orientation="vertical">
 
                         <com.good.gd.widget.GDSearchView
-                            android:id="@+id/gdSearchView"
+                            android:id="@+id/gd_search_view"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -385,7 +385,7 @@
                         android:orientation="vertical">
 
                         <android.widget.SearchView
-                            android:id="@+id/nonGdSearchView"
+                            android:id="@+id/search_view"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/gd_view_height"
                             android:ellipsize="end"
@@ -413,7 +413,7 @@
                         android:orientation="vertical">
 
                         <com.good.gd.widget.GDWebView
-                            android:id="@+id/gdWebView"
+                            android:id="@+id/gd_web_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
 
@@ -431,7 +431,7 @@
                         android:orientation="vertical">
 
                         <WebView
-                            android:id="@+id/nonGdWebView"
+                            android:id="@+id/non_gd_web_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
 
@@ -446,7 +446,7 @@
             </TableLayout>
 
             <TextView
-                android:id="@+id/fieldLengthInfoView"
+                android:id="@+id/field_length_info_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/gd_view_vertical_margin"
@@ -485,7 +485,7 @@
                         android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
                     <TextView
-                        android:id="@+id/outboundState"
+                        android:id="@+id/outbound_state"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -511,7 +511,7 @@
                         android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
                     <TextView
-                        android:id="@+id/inboundState"
+                        android:id="@+id/inbound_state"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -537,7 +537,7 @@
                         android:textAppearance="@android:style/TextAppearance.Holo.Medium" />
 
                     <TextView
-                        android:id="@+id/dictationState"
+                        android:id="@+id/dictation_state"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -558,21 +558,21 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/clearFieldsButton"
+                    android:id="@+id/clearfields_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="clearAllFields"
                     android:text="@string/clear_all_fields" />
 
                 <Button
-                    android:id="@+id/clearPasteboardButton"
+                    android:id="@+id/clear_pasteboard_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="clearPasteboard"
                     android:text="@string/clear_pasteboard" />
 
                 <Button
-                    android:id="@+id/generateRandomTextButton"
+                    android:id="@+id/getn_text_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="generateText"

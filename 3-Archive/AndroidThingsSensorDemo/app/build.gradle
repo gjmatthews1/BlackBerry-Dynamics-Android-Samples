@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 android {
-    compileSdkVersion 27
+    namespace 'com.example.blackberry.sensordemo'
+
     defaultConfig {
         applicationId "com.example.blackberry.sensordemo"
-        minSdkVersion 27
-        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -25,9 +25,9 @@ android {
 }
 
 dependencies {
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_backup_support:13.0.+'
-    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:13.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.1.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_backup_support:14.1.+'
+    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:14.1.+'
     
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:support-v4:27.1.1'
@@ -46,4 +46,5 @@ dependencies {
     compileOnly 'com.google.android.things:androidthings:+'
     implementation 'org.jetbrains:annotations-java5:15.0'
 }
+
 

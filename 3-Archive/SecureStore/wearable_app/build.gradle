@@ -1,29 +1,26 @@
 apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 buildscript {
     repositories {
-        maven { url 'https://enterprise-nexus.rim.net/nexus/content/repositories/central' }
-        maven { url 'https://enterprise-nexus.rim.net/nexus/content/repositories/maven-google' }
+        mavenCentral()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.1'
+        classpath 'com.android.tools.build:gradle:8.9.1'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'https://enterprise-nexus.rim.net/nexus/content/repositories/central' }
-        maven { url 'https://enterprise-nexus.rim.net/nexus/content/repositories/maven-google' }
-        maven { url 'https://enterprise-nexus.rim.net/nexus/content/repositories/ebu-releases' }
-        maven { url 'https://enterprise-nexus.rim.net/nexus/content/repositories/ebu-gd-releases' }
+        mavenCentral()
+        google()
+        maven { url "https://software.download.blackberry.com/repository/maven" }
     }
 }
 
 android {
-
     namespace "com.good.gd.example.securestore"
-
-    compileSdkVersion 34
 
     sourceSets {
         main {
@@ -39,8 +36,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     flavorDimensions 'default'
@@ -52,8 +49,6 @@ android {
 
     defaultConfig {
         applicationId "com.good.gd.example.securestore"
-        minSdkVersion 30
-        targetSdkVersion 34
     }
 
     buildTypes {

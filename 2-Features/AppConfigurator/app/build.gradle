@@ -1,17 +1,11 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 android {
-
     namespace 'com.blackberry.dynamics.sample.theconfigurator'
-
-    compileSdk 34
 
     defaultConfig {
         applicationId 'com.blackberry.dynamics.sample.theconfigurator'
-        minSdk 30
-        targetSdk 34
         versionCode 1
         versionName '1.0'
     }
@@ -22,12 +16,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
 
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.0.+'
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
