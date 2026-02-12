@@ -1,16 +1,11 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 android {
     namespace 'com.blackberry.dynamics.sample.gettingstarted'
 
-    compileSdk 34
-
     defaultConfig {
         applicationId 'com.blackberry.dynamics.sample.gettingstarted'
-        minSdk 30
-        targetSdk 34
         versionCode 1
         versionName '1.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

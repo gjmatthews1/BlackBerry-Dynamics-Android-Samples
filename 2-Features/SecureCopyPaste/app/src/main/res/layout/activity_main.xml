@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_layout"
+    android:id="@+id/bbd_secure_copy_paste_UI"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -13,7 +13,7 @@
     <include layout="@layout/sample_app_top_bar"/>
 
     <LinearLayout
-        android:id="@+id/content_layout"
+        android:id="@+id/topScreenContentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/gd_view_vertical_margin"
@@ -22,6 +22,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/launchTextWidgetsGdButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity_title_widgets_gd"
@@ -29,6 +30,7 @@
             />
 
         <Button
+            android:id="@+id/launchTextWidgetsAppCompatButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity_title_widgets_appcompat"
@@ -36,6 +38,7 @@
             />
 
         <Button
+            android:id="@+id/launchTextWidgetsAppCompatWithInflaterButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity_title_widgets_appcompat_inflater"
@@ -45,6 +48,7 @@
         <View android:layout_height="10dp" android:layout_width="match_parent" />
 
         <Button
+            android:id="@+id/launchPreferencesButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity_title_prefs"
@@ -52,6 +56,7 @@
             />
 
         <Button
+            android:id="@+id/launchRichTextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="launchRichText"
@@ -59,6 +64,7 @@
             />
 
         <Button
+            android:id="@+id/launchFingerprintButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/launch_fingerprint"

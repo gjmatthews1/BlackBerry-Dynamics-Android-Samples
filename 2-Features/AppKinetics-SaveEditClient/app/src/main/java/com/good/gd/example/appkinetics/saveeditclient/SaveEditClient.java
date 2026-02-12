@@ -16,13 +16,19 @@
 
 package com.good.gd.example.appkinetics.saveeditclient;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.good.gd.GDAndroid;
 import com.good.gd.GDServiceProvider;
@@ -48,6 +54,8 @@ public class SaveEditClient extends SampleAppActivity implements GDStateListener
     private static final String SERVICE_VERSION = "1.0.0.0";
     private static final String SERVICE_METHOD = "editFile";
     private static final String FILE_NAME = "DataFile.txt";
+
+    private static final int REQUEST_POST_NOTIFICATIONS = 1001;
 
     private TextView dataView;
 
@@ -83,6 +91,33 @@ public class SaveEditClient extends SampleAppActivity implements GDStateListener
         View mainView = findViewById(R.id.bbd_appkinetics_save_edit_client_UI);
 
         adjustViewsIfEdgeToEdgeMode(mainView, null, dataView);
+
+        // Request notification permission for Android 13+
+        requestNotificationPermission();
+    }
+
+    private void requestNotificationPermission() {
+        // Request POST_NOTIFICATIONS permission for Android 13+ (API 33+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_POST_NOTIFICATIONS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_POST_NOTIFICATIONS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "POST_NOTIFICATIONS permission granted");
+            } else {
+                Log.w(TAG, "POST_NOTIFICATIONS permission denied");
+            }
+        }
     }
 
     private void processSendActionSelected() {

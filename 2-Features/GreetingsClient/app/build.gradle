@@ -1,17 +1,11 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 android {
-
     namespace 'com.good.gd.example.services.greetings.client'
-
-    compileSdk 34
 
     defaultConfig {
         applicationId 'com.good.gd.example.services.greetings.client'
-        minSdk 30
-        targetSdk 34
         versionCode 1
         versionName '1.0'
 
@@ -48,10 +42,10 @@ android {
 
 dependencies {
 
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_backup_support:13.0.+'
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_blackberry_protect_support:13.0.+'
-    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:13.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_backup_support:14.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_blackberry_protect_support:14.0.+'
+    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:14.0.+'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.annotation:annotation:1.2.0'

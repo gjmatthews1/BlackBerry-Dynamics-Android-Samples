@@ -35,7 +35,7 @@ import java.nio.charset.Charset;
 /**
  * Custom view which shows how Secure ClipboardManager can be used
  */
-public class SecureClipboardView extends EditText {
+public class SecureClipboardView extends androidx.appcompat.widget.AppCompatEditText {
 
     //private View.DragShadowBuilder shadowBuilder;
     private ClipboardManager clipboardManager;
@@ -52,11 +52,6 @@ public class SecureClipboardView extends EditText {
 
     public SecureClipboardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    public SecureClipboardView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
 

@@ -1,16 +1,11 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 android {
     namespace 'com.blackberry.dynamics.sample.okhttp'
 
-    compileSdk 34
-
     defaultConfig {
         applicationId 'com.blackberry.dynamics.sample.okhttp'
-        minSdk 30
-        targetSdk 34
         versionCode 1
         versionName '1.0'
 
@@ -27,8 +22,7 @@ android {
 
 dependencies {
 
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
-    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:13.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.0.+'
 
     implementation "com.squareup.okhttp3:okhttp:4.9.1"
     implementation "com.squareup.okio:okio:2.9.0"

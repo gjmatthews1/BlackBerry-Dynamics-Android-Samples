@@ -1,10 +1,9 @@
 apply plugin: 'com.android.library'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 android {
-
     namespace "com.good.gd.example.securestore.common_lib"
 
-    compileSdk 34
 
     //We define what our default configuration is and the fact we support other configurations and we
     //allow modules which use our modules to set these configurations
@@ -24,8 +23,6 @@ android {
 
     defaultConfig {
         //applicationId "com.good.gd.example.securestore.common_lib"
-        minSdk 30
-        targetSdk 34
     }
 
     buildTypes {
@@ -37,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.0.+'
 
 	implementation 'androidx.appcompat:appcompat:1.2.0'
 }

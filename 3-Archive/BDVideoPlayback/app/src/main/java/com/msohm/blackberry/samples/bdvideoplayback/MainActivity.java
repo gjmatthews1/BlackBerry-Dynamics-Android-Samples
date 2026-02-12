@@ -15,13 +15,20 @@
 
 package com.msohm.blackberry.samples.bdvideoplayback;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -38,6 +45,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements GDStateListener,
         SurfaceHolder.Callback {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int REQUEST_POST_NOTIFICATIONS = 1001;
 
     private final String FILENAME = "myVideo.mp4"; //Hard coded filename. Adjust as required.
     private Button copyButton;
@@ -92,6 +102,33 @@ public class MainActivity extends AppCompatActivity implements GDStateListener,
         SurfaceHolder holder = surfaceView.getHolder();
         holder.addCallback(this);
         mp = new MediaPlayer();
+
+        // Request notification permission for Android 13+
+        requestNotificationPermission();
+    }
+
+    private void requestNotificationPermission() {
+        // Request POST_NOTIFICATIONS permission for Android 13+ (API 33+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_POST_NOTIFICATIONS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_POST_NOTIFICATIONS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "POST_NOTIFICATIONS permission granted");
+            } else {
+                Log.w(TAG, "POST_NOTIFICATIONS permission denied");
+            }
+        }
     }
 
     //Copies a sample video from the project into the BlackBerry Dynamics secure file system.

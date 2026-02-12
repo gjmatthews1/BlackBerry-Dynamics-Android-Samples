@@ -23,14 +23,19 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
@@ -70,6 +75,7 @@ public class SecureSQL extends SampleAppActivity
                             OnClickListener {
 
     public static final String TAG = "SecureSQL";
+    private static final int REQUEST_POST_NOTIFICATIONS = 1001;
 
     private static final int MENU_ITEM_OPEN_ITEM = 1;
     private static final int MENU_ITEM_DELETE_ITEM = 2;
@@ -124,6 +130,33 @@ public class SecureSQL extends SampleAppActivity
         ViewGroup contentView = findViewById(R.id.content_layout);
 
         adjustViewsIfEdgeToEdgeMode(mainView, bottomBar, contentView);
+
+        // Request notification permission for Android 13+
+        requestNotificationPermission();
+    }
+
+    private void requestNotificationPermission() {
+        // Request POST_NOTIFICATIONS permission for Android 13+ (API 33+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_POST_NOTIFICATIONS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_POST_NOTIFICATIONS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "POST_NOTIFICATIONS permission granted");
+            } else {
+                Log.w(TAG, "POST_NOTIFICATIONS permission denied");
+            }
+        }
     }
 
     @Override

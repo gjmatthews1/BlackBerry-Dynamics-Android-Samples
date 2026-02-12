@@ -78,8 +78,6 @@ public class SocketFragment extends Fragment
         //Enable scrolling in the resultView.
         resultView.setMovementMethod(new ScrollingMovementMethod());
 
-        final EditText theUrl = (EditText) view.findViewById(R.id.theUrl);
-
         final Button loadButton = (Button) view.findViewById(R.id.loadButton);
         loadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

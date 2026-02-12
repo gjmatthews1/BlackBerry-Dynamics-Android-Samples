@@ -16,9 +16,16 @@
 
 package com.msohm.blackberry.samples.bemsdirectorylookupsample;
 
+import android.Manifest;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -36,6 +43,9 @@ import java.util.Vector;
 public class MainActivity extends AppCompatActivity implements GDStateListener
 {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int REQUEST_POST_NOTIFICATIONS = 1001;
+
     //The service IDs.
     private static final String DIRECTORY_LOOKUP_SERVICE = "com.good.gdservice.enterprise.directory";
 
@@ -50,6 +60,33 @@ public class MainActivity extends AppCompatActivity implements GDStateListener
         GDAndroid.getInstance().activityInit(this);
 
         setContentView(R.layout.activity_main);
+
+        // Request notification permission for Android 13+
+        requestNotificationPermission();
+    }
+
+    private void requestNotificationPermission() {
+        // Request POST_NOTIFICATIONS permission for Android 13+ (API 33+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_POST_NOTIFICATIONS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_POST_NOTIFICATIONS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "POST_NOTIFICATIONS permission granted");
+            } else {
+                Log.w(TAG, "POST_NOTIFICATIONS permission denied");
+            }
+        }
     }
 
     //Looks for a service provider that supports the directory lookup service.

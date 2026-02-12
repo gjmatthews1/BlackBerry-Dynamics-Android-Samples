@@ -18,7 +18,14 @@ package com.msohm.sample.crossthebridge;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,6 +48,10 @@ import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity implements GDStateListener
 {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int REQUEST_POST_NOTIFICATIONS = 1001;
+
     //The service IDs.
     private static final String BLACKBERRY_BRIDGE_APP_ID = "com.blackberry.intune.bridge";
     private static final String EDIT_FILE_SERVICE = "com.good.gdservice.edit-file";
@@ -62,6 +73,33 @@ public class MainActivity extends AppCompatActivity implements GDStateListener
         setContentView(R.layout.activity_main);
 
         editButton = findViewById(R.id.editWordButton);
+
+        // Request notification permission for Android 13+
+        requestNotificationPermission();
+    }
+
+    private void requestNotificationPermission() {
+        // Request POST_NOTIFICATIONS permission for Android 13+ (API 33+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_POST_NOTIFICATIONS);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_POST_NOTIFICATIONS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "POST_NOTIFICATIONS permission granted");
+            } else {
+                Log.w(TAG, "POST_NOTIFICATIONS permission denied");
+            }
+        }
     }
 
     //Looks for a service provider that supports the directory lookup service.
@@ -90,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements GDStateListener
 
             if (BLACKBERRY_BRIDGE_APP_ID.equalsIgnoreCase(provider.getIdentifier()))
             {
-                sb.append("✔ BlackBerry Bridge detected.\n");
+                sb.append("[OK] BlackBerry Bridge detected.\n");
 
                 Vector<GDServiceDetail> serviceDetails = provider.getServices();
 
@@ -99,8 +137,8 @@ public class MainActivity extends AppCompatActivity implements GDStateListener
 
                     if (EDIT_FILE_SERVICE.equalsIgnoreCase(serviceDetail.getIdentifier()))
                     {
-                        sb.append("✔ BlackBerry Bridge edit file service detected.\n");
-                        sb.append("✔ Ready to edit document.\n");
+                        sb.append("[OK] BlackBerry Bridge edit file service detected.\n");
+                        sb.append("[OK] Ready to edit document.\n");
 
                         //Enable the edit button.
                         editButton.setEnabled(true);
@@ -111,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements GDStateListener
 
         if (sb.length() == 0)
         {
-            sb.append("❌ BlackBerry Bridge not found.");
+            sb.append("[FAIL] BlackBerry Bridge not found.");
         }
 
         return sb.toString();

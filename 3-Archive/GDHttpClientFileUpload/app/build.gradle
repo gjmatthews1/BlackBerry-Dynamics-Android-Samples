@@ -1,14 +1,11 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 android {
-    compileSdkVersion 31
+    namespace 'com.msohm.gdhttpclientfileupload'
 
     defaultConfig {
         applicationId "com.msohm.gdhttpclientfileupload"
-        minSdkVersion 28
-        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -22,20 +19,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
 
 dependencies {
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.0.+'
     
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:10.0+'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:11.0+'
     testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }
 

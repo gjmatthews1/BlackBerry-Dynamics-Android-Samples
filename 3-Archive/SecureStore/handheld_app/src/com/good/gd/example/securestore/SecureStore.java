@@ -18,10 +18,14 @@ package com.good.gd.example.securestore;
 
 import static com.good.gd.example.securestore.common_lib.utils.AppLogUtils.DEBUG_LOG;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +33,8 @@ import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -53,6 +59,9 @@ public class SecureStore extends SampleAppActivity implements OnClickListener, A
     boolean permissionFlag;
     private final int MANAGE_ALL_FILES_ACCESS_PERMISSION = 101;
 
+    private static final String TAG = SecureStore.class.getSimpleName();
+    private static final int REQUEST_POST_NOTIFICATIONS = 1001;
+
     /*
      * onCreate - sets up the core activity members
      */
@@ -61,6 +70,21 @@ public class SecureStore extends SampleAppActivity implements OnClickListener, A
         super.onCreate(savedInstanceState);
         GDAndroid.getInstance().activityInit(this);
         setContentView(R.layout.mainfragment);
+
+        // Request notification permission for Android 13+
+        requestNotificationPermission();
+    }
+
+    private void requestNotificationPermission() {
+        // Request POST_NOTIFICATIONS permission for Android 13+ (API 33+)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        REQUEST_POST_NOTIFICATIONS);
+            }
+        }
     }
 
     @Override
@@ -247,6 +271,13 @@ public class SecureStore extends SampleAppActivity implements OnClickListener, A
             // Fragment has its own request permission API, but since we remove FileBrowserFragment with onPause callback,
             // this fragment won't be attached again to parent Activity so we can't relay on that API.
             m_fragment.onPermissionResult(requestCode, permissions, grantResults);
+        }
+        if (requestCode == REQUEST_POST_NOTIFICATIONS) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "POST_NOTIFICATIONS permission granted");
+            } else {
+                Log.w(TAG, "POST_NOTIFICATIONS permission denied");
+            }
         }
     }
 

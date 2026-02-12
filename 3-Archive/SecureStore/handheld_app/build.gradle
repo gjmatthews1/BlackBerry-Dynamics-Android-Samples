@@ -1,11 +1,10 @@
 apply plugin: 'com.android.application'
+apply from: '${rootProject.projectDir}/../../../../gradle_config/setBuildVersions.gradle'
 
 android {
 
     namespace "com.good.gd.example.securestore"
     testNamespace "com.good.gd.example.securestore.tests"
-
-    compileSdk 34
 
     sourceSets {
         main {
@@ -27,8 +26,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     packagingOptions {
@@ -45,9 +44,7 @@ android {
     }
 
     defaultConfig {
-        minSdk 30
         applicationId "com.good.gd.example.securestore"
-        targetSdk 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -62,9 +59,9 @@ android {
 }
 
 dependencies {
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:13.0.+'
-    implementation 'com.blackberry.blackberrydynamics:android_handheld_backup_support:13.0.+'
-    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:13.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_platform:14.0.+'
+    implementation 'com.blackberry.blackberrydynamics:android_handheld_backup_support:14.0.+'
+    androidTestImplementation 'com.blackberry.blackberrydynamics:atsl:14.0.+'
 
     // We include the common library in Handheld mode so it links against the GDLibrary
     implementation project(':SecureStore_common_lib')
